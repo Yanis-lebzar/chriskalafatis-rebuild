@@ -1,0 +1,136 @@
+.footer {
+    height: 5.2rem;
+    z-index: 2;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 4.3rem;
+    padding: 0 6.9rem;
+    color: $bright-navy;
+
+    .aboutPage:hover {
+        background-color: $bright-navy;
+        color: white
+    }
+
+    .galeriePage:hover {
+        background-color: $bee-yellow;
+        color: white
+    }
+
+    .voyagesPage:hover {
+        background-color: $international-orange;
+        color: white
+    }
+
+    .randonneesPage:hover {
+        background-color: $international-orange;
+        color: white
+    }
+
+    .destinationPage:hover {
+        background-color: $international-orange;
+        color: white
+    }
+
+    .homePage:hover {
+        background-color: $international-orange;
+        color: white
+    }
+
+    @include media('<phone') {
+        height: 18rem;
+        margin-bottom: 2.3rem;
+    }
+
+}
+
+.footer__wrapper {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    @extend %description-20;
+
+    @include media('<phone') {
+        height: 100%;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column-reverse;
+
+    }
+}
+
+.footer__informations {
+    @extend %description-16;
+    display: flex;
+    flex-direction: column;
+
+    @include media('<phone') {
+        flex-direction: row;
+        justify-content: center;
+        text-align: center;
+        margin-top: 2.4rem;
+
+        span:nth-of-type(1) {
+            margin-right: 2rem;
+        }
+    }
+}
+
+.footer__copyright {}
+
+.footer__devby {}
+
+.footer__mail__wrapper {
+    display: flex;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    @include media('<phone') {
+        top: 0;
+        left: 20%;
+        transform: none;
+    }
+}
+
+.footer__mail {
+    cursor: pointer;
+    height: 4.3rem;
+    width: 31.9rem;
+    display: flex;
+    border: 1px solid $bright-navy;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.1rem;
+    transition: all 0.4s ease;
+    line-height: 1;
+
+    @include media('<phone') {
+        width: 45.9rem;
+        height: 6.3rem;
+
+    }
+
+    // &:hover {
+    //     // border-width: 2.3rem;
+    //     color: $color-white;
+    // }
+
+
+}
+
+
+
+// .page2 .footer__mail:hover {
+//     background-color: $color2;
+//     /* Couleur de fond au survol pour la page 2 */
+//     color: $text-color2;
+//     /* Couleur du texte au survol pour la page 2 */
+// }
+
+
+
+.footer_social_link {}

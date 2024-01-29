@@ -1,0 +1,39 @@
+$color-bright-gray: #37384C;
+$color-cadet-blue: #B2B8C3;
+$color-contessa: #C97164;
+$color-quicksand: #BC978C;
+$color-quarter-spanish-white: #F9F1E7;
+$color-white: #fff;
+
+// new colors
+$princeton-orange: #FA832A;
+$dutch-white: #ECD5BD;
+$windsor-tan: #A84F08;
+$eggshell: #F2E7DC;
+$sap-green: #4E8C2B;
+// #83B169
+$teal-blue: #25728D;
+$bright-navy: #186CDE;
+$bee-yellow: #EEAE08;
+$international-orange: #BC2F2F;
+$bleu-de-france :#2F80ED;
+$snow: #F6FBFF;
+$hooker-green : #537664;
+
+$font-branch: 'Branch';
+$font-poppins: 'Poppins';
+$font-santiago: 'Santiago';
+$font-sarala: 'Sarala';
+$font-pp-telegraf: 'PP Telegraf';
+
+$ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+$ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+$z-indexes: (
+    'preloader',
+    'transition',
+    'navigation',
+    'fullScreenMenu',
+    'home__navigation',
+    'content'
+);

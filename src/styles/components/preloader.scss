@@ -1,0 +1,62 @@
+.preloader {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  @extend %center;
+  background-color: $dutch-white;
+  color: $princeton-orange;
+  text-align: center;
+  z-index: z('preloader');
+  padding: 4.4rem 6.9rem;
+
+  // display: none;
+}
+
+.preloader__logo__wrapper {
+  width: 25%;
+  height: 10%;
+  @extend %center;
+  // border-radius: 10rem;
+  // border-radius: 7.3rem;
+  border-radius: 100rem;
+
+  background-color: white;
+
+  @include media('<phone') {
+    width: 50%;
+  }
+}
+
+.preloader__text {
+  @extend %title-53;
+  max-width: 67rem;
+
+  span span {
+    @extend %title-53;
+    display: inline-block;
+    transform-origin: center center 0.5em;
+  }
+
+
+}
+
+.preloader__number {
+  @extend %description-18;
+  position: absolute;
+  bottom: 7.3rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include media('<phone') {
+    font-size: 2.4rem;
+  }
+
+}
+
+.preloader__number__text {
+  display: inline-block;
+  //test
+  color: rgb(204, 122, 55);
+}

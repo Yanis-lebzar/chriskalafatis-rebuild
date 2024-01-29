@@ -1,0 +1,323 @@
+.navigation {
+    @extend %cover;
+    pointer-events: none;
+    z-index: z('navigation');
+    color: $windsor-tan;
+    height: 9rem;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: initial;
+    position: absolute;
+    top: 1.5rem;
+
+    &--voyages {
+        top: 2.5rem;
+
+        @include media('<phone') {
+            top: 4.5rem;
+        }
+    }
+
+    .navigation__icon__wrapper {
+        border: none;
+        padding-left: 0;
+
+        .navigation__icon__link {
+            margin-left: 0;
+        }
+
+        &::before {
+            display: none;
+        }
+    }
+
+    .navigation__list {
+
+        display: none;
+
+    }
+
+
+}
+
+.hidden {
+    display: none;
+}
+
+.navigation__wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-width: 178.238rem;
+    justify-content: center;
+    align-items: center;
+
+    @include media('<phone') {
+        padding: 0 4rem;
+    }
+}
+
+.navigation__icon__wrapper {
+
+    padding-left: 6.9rem;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+    border-radius: 17.3rem 5.5rem 0px 0px;
+    border-top: 3px solid var(--new-text, #BA5C12);
+    border-left: 1px solid var(--new-text, #BA5C12);
+
+    @include media('<phone') {
+        padding: 0;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -0.4rem;
+        border-radius: 52px;
+        left: 12.2rem;
+        width: 5.1rem;
+        border-top: 5px solid var(--new-text, #BA5C12); // Changer la couleur au besoin
+        transform: translateX(-50%); // Centrer l'élément
+    }
+}
+
+.navigation__icon__link {
+    height: 100%;
+    margin-left: 2.8rem;
+    pointer-events: auto;
+    border: 2.28px solid $windsor-tan;
+    border-radius: 100%;
+    width: 5.2rem;
+    height: 5.2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s ease;
+
+    span {
+        @extend %title-30;
+        line-height: 1;
+        margin-left: 0.4rem;
+        margin-top: 0.25rem;
+
+        @include media('<phone') {
+            font-size: 3rem;
+        }
+    }
+
+    &:hover {
+        opacity: 0.5;
+    }
+
+    @include media('<phone') {
+        // padding: 3rem;
+        margin-left: 0;
+    }
+}
+
+
+.navigation__link__icon {
+    height: 100%;
+
+    display: block;
+}
+
+
+.navigation__list__wrapper {
+    display: flex;
+    width: 58.401rem;
+    height: 100%;
+    align-items: center;
+
+    @include media('<phone') {
+        display: none;
+    }
+}
+
+.navigation__list {
+
+    display: flex;
+    height: 100%;
+
+    li {
+        position: relative;
+        height: 100%;
+        border-radius: 2.5rem 2.5rem 0px 0px;
+        border-top: 3px solid var(--new-text, #BA5C12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: auto;
+        width: 14.6rem;
+
+        &:last-child {
+            border-radius: 2.5rem 7.3rem 0px 0px;
+            border-top: 3px solid var(--new-text, #BA5C12);
+            border-right: 1px solid var(--new-text, #BA5C12);
+
+            &::before {
+
+                left: 34%;
+
+            }
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -0.7rem;
+            border-radius: 52px;
+            left: 50%;
+            width: 4.9rem;
+            border-top: 5px solid var(--new-text, #BA5C12); // Changer la couleur au besoin
+            transform: translateX(-50%); // Centrer l'élément
+
+            @media (max-width: 1350px) {}
+
+            // margin: 0 2rem;
+
+
+            a {}
+        }
+
+    }
+}
+
+
+.navigation__list__link {
+    @extend %title-24;
+
+    @extend %link--hidden;
+    line-height: 1.5;
+
+    @include media('<phone') {
+        display: block;
+    }
+}
+
+.navigation__hamburger {
+    pointer-events: auto;
+    cursor: pointer;
+    height: 4.9rem;
+    width: 4.9rem;
+    border: 3px solid $windsor-tan;
+    border-radius: 1.4rem;
+    display: flex;
+    position: relative;
+
+    justify-content: center;
+    // flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: scale(0.90);
+
+        // .navigation__hamburger__lines {
+
+        //     &::before,
+        //     &::after {
+        //         transition: width 0.3s ease-in-out;
+        //         width: 50%;
+
+        //     }
+        // }
+
+    }
+
+    .navigation__hamburger__lines {
+        width: 100%;
+
+        &::before,
+        &::after {
+
+            content: "";
+            display: block;
+            width: 45%;
+            background-color: $windsor-tan;
+            height: 0.3rem;
+            border-radius: 10rem;
+            margin: auto;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+
+
+        }
+
+        &::before {
+            top: -0.5rem;
+        }
+
+
+        &::after {
+            top: 0.5rem;
+        }
+
+
+
+        &--active {
+            &::after {
+                top: -0.1rem;
+                transform: rotate(-45deg);
+            }
+
+            &::before {
+                top: 0.2rem;
+
+                transform: rotate(45deg);
+            }
+        }
+    }
+
+    @include media('<phone') {
+        height: 5.4rem;
+        width: 5.4rem;
+    }
+
+
+
+
+}
+
+// .navigation__hamburger__line {
+//     display: none;
+//     position: absolute;
+
+//     left: 50%;
+//     transform: translateX(-50%);
+
+
+//     &:nth-child(1) {
+//         margin-bottom: 1rem;
+//         top: calc(50% - 0.7rem);
+
+//         transform-origin: 50% 50%;
+
+//     }
+
+//     &:nth-child(2) {
+//         top: calc(50% + 0.7rem);
+
+//         transform-origin: 50% 50%;
+//     }
+
+//     width: 2rem;
+//     height: 0.4rem;
+//     background-color: $windsor-tan;
+//     border-radius: 10rem;
+//     transition: transform 0.3s ease-in-out,
+//     top 0.3s ease-in-out;
+
+//     @include media('<phone') {
+//         width: 2rem;
+
+//     }
+// }

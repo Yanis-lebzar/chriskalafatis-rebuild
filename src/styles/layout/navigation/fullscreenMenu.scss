@@ -1,0 +1,114 @@
+.fullscreenMenu {
+    @extend %cover;
+    @extend %center;
+    background-color: $eggshell;
+    z-index: z('fullScreenMenu');
+    visibility: hidden;
+    display: none;
+
+    &--active {
+        visibility: visible;
+        display: flex;
+    }
+
+    .navigation {
+        position: absolute;
+        top: 5.5rem;
+
+
+        .navigation__icon__wrapper {
+
+
+            &::before {
+                left: 19.2rem;
+            }
+        }
+
+
+    }
+
+
+    .footer {
+        color: $windsor-tan;
+        padding: 0 20.2rem;
+        margin-bottom: 6.5rem;
+
+        .footer__wrapper {
+            justify-content: flex-start;
+
+            .footer__informations {
+                display: none;
+            }
+
+            .footer__mail__wrapper {
+                left: auto;
+                position: static;
+                top: auto;
+                transform: none;
+                margin-right: 50.9rem;
+
+                @include media('<phone') {
+                    margin-right: 0;
+                    margin-top: 2rem;
+                }
+            }
+
+            .footer__mail {
+                border-color: $windsor-tan;
+
+                &:hover {
+                    color: $color-white;
+                }
+            }
+        }
+    }
+
+    // .footer__mail .aboutPage :hover {
+    //     background-color: $bright-navy;
+    //     /* Couleur de fond au survol pour la page 1 */
+    // }
+}
+
+
+
+.fullscreenMenu__wrapper {
+    flex: 1;
+    height: auto;
+    display: flex;
+}
+
+.fullscreenMenu__list {
+    @extend %title-96;
+    color: $windsor-tan;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    margin-left: 20.2rem;
+
+    @include media('<phone') {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+    }
+}
+
+.fullscreenMenu__list .column:first-child {
+    padding-right: 32.4rem;
+
+    @include media('<phone') {
+        padding-right: 0;
+    }
+}
+
+
+
+
+.fullscreenMenu__list__item {
+    width: 100%;
+    margin-bottom: 7.5rem;
+}
+
+.fullscreenMenu__list__link {}

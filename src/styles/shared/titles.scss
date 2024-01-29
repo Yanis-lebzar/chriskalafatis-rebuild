@@ -1,0 +1,155 @@
+%title-20 {
+    font-family: $font-branch;
+    font-size: 2rem;
+
+    @include media('<phone') {
+        font-size: 4.8rem;
+    }
+}
+
+%title-24 {
+    font-family: $font-branch;
+    font-size: 2.4rem;
+    letter-spacing: 0.1rem;
+    line-height: 1;
+
+    @include media('<phone') {
+        font-size: 2.8rem;
+    }
+}
+
+%title-30 {
+    font-family: $font-branch;
+    font-size: 3rem;
+
+    @include media('<phone') {
+        font-size: 5.2rem;
+    }
+}
+
+%title-32 {
+    font-family: $font-branch;
+    font-size: 3.2rem;
+
+    @include media('<phone') {
+        font-size: 4rem;
+    }
+}
+
+%title-36 {
+    font-family: $font-branch;
+    font-size: 3.6rem;
+
+    @include media('<phone') {
+        font-size: 5.2rem;
+    }
+}
+
+%title-40 {
+    font-family: $font-branch;
+    font-size: 4rem;
+
+    @include media('<phone') {
+        font-size: 5.2rem;
+    }
+}
+
+%title-48 {
+    font-family: $font-branch;
+    font-size: 4.8rem;
+
+    @include media('<phone') {
+        font-size: 5.2rem;
+    }
+}
+
+%title-53 {
+    font-family: $font-branch;
+    font-size: 5.3rem;
+    line-height: 1;
+
+    @include media('<phone') {
+        font-size: 4.2rem;
+    }
+}
+
+%title-60 {
+    font-family: $font-branch;
+    font-size: 6rem;
+}
+
+%title-64 {
+    font-family: $font-branch;
+    font-size: 6.4rem;
+}
+
+%title-80 {
+    font-family: $font-branch;
+    font-size: 8rem;
+
+    @include media('<phone') {
+        font-size: 7rem;
+    }
+}
+
+%title-96 {
+    font-family: $font-branch;
+    font-size: 9.6rem;
+
+    @include media('<phone') {
+        font-size: 6.4rem;
+    }
+}
+
+%title-110 {
+    font-family: $font-branch;
+    font-size: 11rem;
+    line-height: 1.2;
+
+    @include media('<phone') {
+        font-size: 12rem;
+    }
+}
+
+%title-128 {
+    font-family: $font-branch;
+    font-size: 12.8rem;
+    line-height: 0.95;
+
+    @include media('<phone') {
+        font-size: 8.8rem;
+    }
+}
+
+%title-148 {
+    font-family: $font-branch;
+    font-size: 14.8rem;
+    line-height: 0.82;
+
+    // @include media('<phone') {
+    //     font-size: 18rem;
+    // }
+}
+
+%title-200 {
+    font-family: $font-branch;
+    font-size: 20rem;
+
+    @include media('<=phone') {}
+}
+
+%title-238 {
+    font-family: $font-branch;
+    font-size: 23.8rem;
+
+    @include media('<=phone') {
+        font-size: 13.8rem;
+    }
+}
+
+%title-284 {
+    font-family: $font-branch;
+    font-size: 28.4rem;
+
+    @include media('<=phone') {}
+}
