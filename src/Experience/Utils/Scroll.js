@@ -41,7 +41,7 @@ this.time = new Time()
           }
           
           this.lenis.on('scroll', (e) => {
-            console.log(e)
+            // console.log(e)
             // this.scroll.current = e.actualScroll
             // this.scroll.target = e.targetScroll
             // this.scroll.scroll = e.scroll

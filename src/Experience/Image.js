@@ -105,7 +105,7 @@ this.borderRadiusValue = 0
 
         this.material.uniforms.uGeometrySize.value = new THREE.Vector2(size.width, size.height);
 
-        console.log(this.material.uniforms.uGeometrySize)
+        // console.log(this.material.uniforms.uGeometrySize)
 
     }
 
