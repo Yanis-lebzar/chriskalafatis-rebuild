@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import gsap from 'gsap'
 
 import Experience from "../Experience.js";
 import Image from "../Image.js";
@@ -18,17 +19,51 @@ export default class Galery {
         this.scroll = new Scroll();
         this.group = new THREE.Group();
 
+        this.imageElement = document.querySelector('.img');
         this.images = []; // Tableau pour stocker les instances d'Image
         this.imagesElements = document.querySelectorAll('.img');
+        this.minimaps = document.querySelectorAll('.minimap__line');
         this.textures = Object.values(this.resources.items)
 
+        this.objs = Array(this.minimaps.length).fill({dist:0})
+
         this.createImages()
+
         this.scene.add(this.group);
 
-        window.addEventListener('wheel', (e) => {
-            this.scroll.scroll.current += e.deltaY
-            // console.log(e.deltaY)
+        this.currentHeight = 0;
+
+        this.y = {
+            current: 0,
+            target: 0,
+            lerp: 0.1,
+            round: 0
+          }
+
+        this.getMarginBottom(this.imageElement)
+            window.addEventListener('wheel', (e) => {
+
+                this.y.target += e.deltaY * 0.0002
+
+            // clearTimeout(this.isScrolling);
+            // this.isScrolling = setTimeout(() => {
+            //     this.snapToClosestPosition();
+            // }, 66); // Temps en ms pour déterminer la fin du scroll
+       
         })
+    }
+    
+    getMarginBottom (element) {
+        const elementBounds = element.getBoundingClientRect();
+
+        let style = window.getComputedStyle(element);
+        let marginBottom = parseFloat(style.marginBottom);
+        // Convertir la marge en pixels si elle est en 'rem'
+        let fontSize = parseFloat(window.getComputedStyle(document.documentElement).fontSize);
+        let marginBottomInPixels = parseFloat(marginBottom) * fontSize;
+        // console.log(marginBottom)
+        this.currentHeight = elementBounds.height + marginBottom ;
+
     }
 
     createImages () {
@@ -42,6 +77,7 @@ this.imagesElements.forEach((image, i) => {
   const imageBounds =   image.getBoundingClientRect()
   const textureName = image.dataset.texture;
   const texture = this.resources.items[textureName];
+
     const imageInstance = new Image(image, texture, 
             {
              width: imageBounds.width,
@@ -55,40 +91,67 @@ this.imagesElements.forEach((image, i) => {
     this.images.push(imageInstance);
 })
 
-// this.group.position.y = -(this.images[0].geometry.parameters.height * this.spacing) * (this.images.length - 1);
 
     }
 
     resize() {
+        this.getMarginBottom(this.imageElement)
+
+        setTimeout(() => {
+
+       
         this.imagesElements.forEach((htmlElement, i) => {
             const newBounds = htmlElement.getBoundingClientRect();
     
             // Mise à jour de la taille de l'instance de l'image
             const imageInstance = this.images[i];
 
-            // imageInstance.mesh.position.y = i * (newBounds.height * this.spacing);
-
             imageInstance.updateSize({ width: newBounds.width, height: newBounds.height });
+
+            imageInstance.mesh.position.y = -newBounds.top + this.sizes.height / 2 - newBounds.height / 2;
+            imageInstance.mesh.position.x =  newBounds.left - this.sizes.width /2 + newBounds.width / 2;
         });
-        this.group.position.y = -(this.images[0].geometry.parameters.height * this.spacing) * (this.images.length - 1);
+    }, 100);
     }
 
+ 
     update () {
 
-// console.log(this.scroll.scroll.current)
-   // Déplacer le groupe vers le haut
-// this.group.position.y += this.time.elapsed * 0.0005;
+        // this.y.current = gsap.utils.interpolate(this.y.current, this.y.target, this.y.lerp)
+        this.y.current += this.y.target
+        this.y.target *= 0.8
+        this.y.round = Math.round(this.y.current);
 
+        let diff = (this.y.round - this.y.current);
+
+        this.y.current += Math.sign(diff) * Math.pow(Math.abs(diff),0.9) * 0.015
+        this.y.current = (this.y.current + this.objs.length) % this.objs.length;
+
+        
+        this.objs.forEach((obj, i) => {
+           let directDist = Math.abs(this.y.current - i);
+        let reverseDist = this.objs.length - directDist;
+        obj.dist = Math.min(directDist, reverseDist);
+
+        obj.dist = Math.min(obj.dist, 1);
+        obj.dist = 1 - obj.dist ** 2;
+
+        this.minimaps[i].style.transform = `scale(${1 + 0.4 * obj.dist})`;
+        this.minimaps[i].style.opacity = `${0.5 * obj.dist + 0.5}`;
+
+        this.images[i].mesh.scale.y = obj.dist
+            
+        })
    // Déplacer le groupe vers le bas
-   this.group.position.y =  this.scroll.scroll.current ;
+   this.group.position.y =  this.y.current * this.currentHeight ;
 
 //    Hauteur totale de la galerie
    const totalHeight = this.images.length * this.images[0].geometry.parameters.height * this.spacing;
-
+console.log(this.y.current)
    this.images.forEach(image => {
        image.update();
-
-       // Vérifiez si l'image est trop basse
+       console.log(image.mesh)
+// image.mesh.scale.y = image.mesh.scale.y * this.y.current*0.05      // Vérifiez si l'image est trop basse
        if (image.mesh.position.y + this.group.position.y < -totalHeight / 2) {
            // Déplacez l'image en haut de la galerie
            image.mesh.position.y += totalHeight;
@@ -100,5 +163,5 @@ this.imagesElements.forEach((image, i) => {
        
     }
 
-
+  
 }
