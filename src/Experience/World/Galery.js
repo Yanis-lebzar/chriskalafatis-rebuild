@@ -24,7 +24,9 @@ export default class Galery {
         this.imagesElements = document.querySelectorAll('.img');
         this.minimaps = document.querySelectorAll('.minimap__line');
         this.textures = Object.values(this.resources.items)
-
+        this.labels = document.querySelectorAll('.slider__label__li')
+this.label = document.querySelector('.slider__label ul')
+this.label.sizes = this.labels[0].getBoundingClientRect()
         this.objs = Array(this.minimaps.length).fill({dist:0})
 
         this.createImages()
@@ -43,7 +45,7 @@ export default class Galery {
         this.getMarginBottom(this.imageElement)
             window.addEventListener('wheel', (e) => {
 
-                this.y.target += e.deltaY * 0.0002
+                this.y.target += e.deltaY * 0.0001
 
             // clearTimeout(this.isScrolling);
             // this.isScrolling = setTimeout(() => {
@@ -96,6 +98,7 @@ this.imagesElements.forEach((image, i) => {
 
     resize() {
         this.getMarginBottom(this.imageElement)
+        this.label.sizes = this.labels[0].getBoundingClientRect()
 
         setTimeout(() => {
 
@@ -126,6 +129,9 @@ this.imagesElements.forEach((image, i) => {
 
         this.y.current += Math.sign(diff) * Math.pow(Math.abs(diff),0.9) * 0.015
         this.y.current = (this.y.current + this.objs.length) % this.objs.length;
+        
+        this.label.style.transform = `translateY(${ - this.label.sizes.height *this.y.current}px)`
+
 
         
         this.objs.forEach((obj, i) => {
@@ -138,19 +144,25 @@ this.imagesElements.forEach((image, i) => {
 
         this.minimaps[i].style.transform = `scale(${1 + 0.4 * obj.dist})`;
         this.minimaps[i].style.opacity = `${0.5 * obj.dist + 0.5}`;
+this.labels[i].style.opacity = `${1 * obj.dist }`;
 
-        this.images[i].mesh.scale.y = obj.dist
-            
+
+        // this.images[i].sizes.height = Math.max(obj.dist, 0.4)
+        let visibleHeight = Math.max(obj.dist, 0.1);
+        this.images[i].mesh.material.uniforms.visibleHeight.value = visibleHeight;
+
         })
+
    // Déplacer le groupe vers le bas
    this.group.position.y =  this.y.current * this.currentHeight ;
 
 //    Hauteur totale de la galerie
    const totalHeight = this.images.length * this.images[0].geometry.parameters.height * this.spacing;
-console.log(this.y.current)
+            
+
    this.images.forEach(image => {
        image.update();
-       console.log(image.mesh)
+
 // image.mesh.scale.y = image.mesh.scale.y * this.y.current*0.05      // Vérifiez si l'image est trop basse
        if (image.mesh.position.y + this.group.position.y < -totalHeight / 2) {
            // Déplacez l'image en haut de la galerie

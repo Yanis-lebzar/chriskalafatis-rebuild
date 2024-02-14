@@ -948,6 +948,7 @@ nav .links ul li:nth-child(2) {
   top: 0;
   left: 0;
   display: flex;
+  font-size: 1.2rem;
 }
 .slider .slider__informations .slider__informations__wrapper div:nth-child(2) {
   margin-left: 4rem;

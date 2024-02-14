@@ -93,6 +93,7 @@ this.borderRadiusValue = 0
                 uTexture: { value: this.textures },
                 uGeometrySize: { value: new THREE.Vector2(1,1) },
                 uBorderRadius: { value: this.borderRadiusValue },
+                visibleHeight: {value: 0},
                 uImageSize: { value: new THREE.Vector2(this.texturesWidth, this.texturesHeight) },
                 uTime: { value: 0 },
             },

@@ -3,7 +3,9 @@ uniform vec2 uImageSize;
 uniform sampler2D uTexture;
 uniform float uTime;
 uniform float uBorderRadius;
+uniform float visibleHeight;
 varying vec2 vUv;
+varying vec2 vH;
 
 // Background cover UV
  
@@ -56,30 +58,15 @@ float roundCorners(vec2 planeRes, vec2 uv, float radius) {
 void main() {
     
 vec2 uv = getUvs(uGeometrySize, uImageSize, vUv);
+
+
 vec4 color = texture2D(uTexture, uv);
-//     vec2 uv = (vUv - 0.5 ) * 2.0;
-//     vec2 uv0 = uv;
-//     vec3 finalColor = vec3(0.0);
-
-//     for (float i = 0.; i < 3.; i++) {
-     
-//     uv = fract(uv * 1.5) - 0.5;
-
-//     float d = length(uv);
-
-//     vec3 col = palette((length(uv0)) + uTime);
-
-//     d = sin(d * 8. + uTime ) / 8.;
-//     d = abs(d);
-
-//     d = .02 / d;
-//     finalColor += col * d;
-//  }
-
-float roundC = roundCorners(uGeometrySize, vUv, uBorderRadius / min(uGeometrySize.x, uGeometrySize.y));
 
 
-    // color.a *= roundC;
+float roundC = roundCorners(uGeometrySize, vH, uBorderRadius / min(uGeometrySize.x, uGeometrySize.y));
+
+
+
 
      gl_FragColor = color;
      gl_FragColor.a = 1.0;
