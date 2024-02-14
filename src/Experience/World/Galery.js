@@ -42,6 +42,32 @@ this.label.sizes = this.labels[0].getBoundingClientRect()
             round: 0
           }
 
+this.uProgress = { value: 0 }
+        this.imageElement.addEventListener('mouseenter', () => {
+
+            this.images.forEach(image => {
+
+                gsap.to(image.material.uniforms.uProgress, {
+                    value: 1,
+                    duration: 1,
+                    ease: 'power3.inOut'
+                })
+
+            })
+        })
+        this.imageElement.addEventListener('mouseleave', () => {
+            
+            this.images.forEach(image => {
+
+                gsap.to(image.material.uniforms.uProgress, {
+                    value: 0,
+                    duration: 1,
+                    ease: 'power3.inOut'
+                })
+
+            })
+        })
+
         this.getMarginBottom(this.imageElement)
             window.addEventListener('wheel', (e) => {
 
@@ -86,7 +112,9 @@ this.imagesElements.forEach((image, i) => {
             height: imageBounds.height
             }, 
             vertexShader, 
-            fragmentShader, this.group)
+            fragmentShader, 
+            this.group, 
+            this.uProgress)
     imageInstance.mesh.position.y = -imageBounds.top + this.sizes.height / 2 - imageBounds.height / 2;
     imageInstance.mesh.position.x =  imageBounds.left - this.sizes.width /2 + imageBounds.width / 2;
     
@@ -172,7 +200,7 @@ this.labels[i].style.opacity = `${1 * obj.dist }`;
            image.mesh.position.y -= totalHeight;
        }
    });
-       
+
     }
 
   
