@@ -14,7 +14,7 @@ void main()
 
     vec3 newposition = position;
 
-    newposition.y *= sin(newposition.x * (-300.14) + uTime * 1.);
+    newposition.y *= sin(newposition.x/4500. * ((-3.14159265359/2.) * 10.) + uTime * 1.);
 vec3 new = mix(position, newposition, uProgress);
     vec4 modelPosition = modelMatrix * vec4(new, 1.0);
 

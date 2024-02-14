@@ -327,6 +327,10 @@ body {
   font-family: "Poppins";
 }
 
+main {
+  opacity: 0;
+}
+
 a {
   color: inherit;
   outline: none;
