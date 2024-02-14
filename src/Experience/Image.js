@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import Experience from './Experience.js'
-
+import gsap from 'gsap'
 export default class Image
 {
     constructor(element, imageName, imageSize, vertexShader, fragmentShader,scene)
@@ -27,7 +27,6 @@ this.borderRadiusValue = 0
         this.setMaterial(imageSize)
         this.getBorderRadius()
         this.setMesh()
-
     }
 
     setGeometry(imageSize)
@@ -94,6 +93,7 @@ this.borderRadiusValue = 0
                 uGeometrySize: { value: new THREE.Vector2(1,1) },
                 uBorderRadius: { value: this.borderRadiusValue },
                 visibleHeight: {value: 0},
+                uProgress: { value: 0 },
                 uImageSize: { value: new THREE.Vector2(this.texturesWidth, this.texturesHeight) },
                 uTime: { value: 0 },
             },

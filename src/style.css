@@ -965,6 +965,7 @@ nav .links ul li:nth-child(2) {
   margin-bottom: 18.5rem;
 }
 .slider .slider__images .img {
+  cursor: pointer;
   width: 83.9rem;
   height: 46.4rem;
   border-radius: 4.1rem;

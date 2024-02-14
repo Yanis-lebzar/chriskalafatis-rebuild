@@ -55,11 +55,14 @@ html {
 
 body {
     // @extend %cover;
-
     @extend %description-18;
     // position: relative;
     font-family: $font-poppins;
     // position: fixed;
+}
+
+main {
+    // opacity: 0;
 }
 
 a {

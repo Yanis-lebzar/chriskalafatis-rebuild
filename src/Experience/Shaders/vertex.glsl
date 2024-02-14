@@ -3,6 +3,7 @@ varying vec2 vH;
 
 uniform float uTime;
 uniform float visibleHeight;
+uniform float uProgress;
 
 void main()
 {
@@ -13,9 +14,9 @@ void main()
 
     vec3 newposition = position;
 
-    newposition.y *= sin(newposition.x * (-300.14) + uTime * 2.);
-
-    vec4 modelPosition = modelMatrix * vec4(newposition, 1.0);
+    newposition.y *= sin(newposition.x * (-300.14) + uTime * 1.);
+vec3 new = mix(position, newposition, uProgress);
+    vec4 modelPosition = modelMatrix * vec4(new, 1.0);
 
     // modelPosition.z = sin(modelPosition.x * uTime) * 0.1;
     vec4 viewPosition = viewMatrix * modelPosition;
