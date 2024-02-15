@@ -31,7 +31,7 @@ this.borderRadiusValue = 0
 
     setGeometry(imageSize)
     {
-        this.geometry = new THREE.PlaneGeometry(imageSize.width, imageSize.height, 300, 300)
+        this.geometry = new THREE.PlaneGeometry(imageSize.width, imageSize.height, 50, 50)
     }
 
     setTextures(imageName)
@@ -55,7 +55,7 @@ this.borderRadiusValue = 0
         this.geometry.dispose();
     
         // Créer une nouvelle géométrie avec la nouvelle taille
-        this.geometry = new THREE.PlaneGeometry(newSize.width, newSize.height, 300, 300);
+        this.geometry = new THREE.PlaneGeometry(newSize.width, newSize.height, 50, 50);
     
         // Appliquer la nouvelle géométrie au mesh
         this.mesh.geometry = this.geometry;

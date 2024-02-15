@@ -83,6 +83,7 @@ float cnoise(vec3 P){
 
 void main()
 {
+  float PI = 3.14159265359;
 	vUv = uv;
     	vH = uv;
 
@@ -93,8 +94,14 @@ void main()
     // newposition.y *= sin(newposition.x/4500. * ((-3.14159265359/2.) * 10.) + uTime * 1.);
     // newposition.z += sin(newposition.x / 120.2 + uTime ) *80.0 ;
 // vec3 new = mix(position, newposition, uProgress);
-        newposition.z += cnoise(vec3(position.x * 10.,position.y,uTime *0.2))*300.;
-        newposition.z += 150.;
+
+
+        // newposition.z += cnoise(vec3(position.x/100.,position.y/100.,uTime * 0.2))*100.;
+        // newposition.z -= 150.;
+
+
+newposition.z += sin((newposition.x / 1800. - 0.25+ uTime / 10. ) *2. * PI)*100.;
+
 vec3 new = mix(position, newposition, uProgress);
     vec4 modelPosition = modelMatrix * vec4(new, 1.0);
 
