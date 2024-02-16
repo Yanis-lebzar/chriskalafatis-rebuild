@@ -39,7 +39,10 @@ this.label.sizes = this.labels[0].getBoundingClientRect()
             current: 0,
             target: 0,
             lerp: 0.1,
-            round: 0
+            round: 0,
+            t:0,
+            c:0,
+            speed : 0,
           }
 
 this.uProgress = { value: 0 }
@@ -49,7 +52,7 @@ this.uProgress = { value: 0 }
 
                 gsap.to(image.material.uniforms.uProgress, {
                     value: 1,
-                    duration: 1,
+                    duration: 2.5,
                     ease: 'power3.inOut'
                 })
 
@@ -61,7 +64,7 @@ this.uProgress = { value: 0 }
 
                 gsap.to(image.material.uniforms.uProgress, {
                     value: 0,
-                    duration: 1,
+                    duration: 2.5,
                     ease: 'power3.inOut'
                 })
 
@@ -72,6 +75,7 @@ this.uProgress = { value: 0 }
             window.addEventListener('wheel', (e) => {
 
                 this.y.target += e.deltaY * 0.0001
+                this.y.t += e.deltaY * 0.0001
 
             // clearTimeout(this.isScrolling);
             // this.isScrolling = setTimeout(() => {
@@ -149,11 +153,15 @@ this.imagesElements.forEach((image, i) => {
     update () {
 
         // this.y.current = gsap.utils.interpolate(this.y.current, this.y.target, this.y.lerp)
+        // this.y.c += this.y.t
         this.y.current += this.y.target
         this.y.target *= 0.8
         this.y.round = Math.round(this.y.current);
-
         let diff = (this.y.round - this.y.current);
+
+        const b = (this.y.t - this.y.c) *2
+
+        this.y.c = gsap.utils.interpolate(this.y.c, this.y.t, this.y.lerp)
 
         this.y.current += Math.sign(diff) * Math.pow(Math.abs(diff),0.9) * 0.015
         this.y.current = (this.y.current + this.objs.length) % this.objs.length;
@@ -161,7 +169,7 @@ this.imagesElements.forEach((image, i) => {
         this.label.style.transform = `translateY(${ - this.label.sizes.height *this.y.current}px)`
 
 
-        
+
         this.objs.forEach((obj, i) => {
            let directDist = Math.abs(this.y.current - i);
         let reverseDist = this.objs.length - directDist;
@@ -187,10 +195,9 @@ this.labels[i].style.opacity = `${1 * obj.dist }`;
 //    Hauteur totale de la galerie
    const totalHeight = this.images.length * this.images[0].geometry.parameters.height * this.spacing;
             
-
    this.images.forEach(image => {
        image.update();
-
+image.material.uniforms.uStrength.value = b
 // image.mesh.scale.y = image.mesh.scale.y * this.y.current*0.05      // Vérifiez si l'image est trop basse
        if (image.mesh.position.y + this.group.position.y < -totalHeight / 2) {
            // Déplacez l'image en haut de la galerie

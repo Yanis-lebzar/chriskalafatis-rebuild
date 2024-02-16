@@ -4,6 +4,8 @@ varying vec2 vH;
 uniform float uTime;
 uniform float visibleHeight;
 uniform float uProgress;
+uniform float uStrength;
+uniform vec2 uViewportSizes;
 
 //	Classic Perlin 3D Noise 
 //	by Stefan Gustavson
@@ -80,7 +82,7 @@ float cnoise(vec3 P){
   return 2.2 * n_xyz;
 
 }
-
+varying float vNoise;
 void main()
 {
   float PI = 3.14159265359;
@@ -94,15 +96,21 @@ void main()
     // newposition.y *= sin(newposition.x/4500. * ((-3.14159265359/2.) * 10.) + uTime * 1.);
     // newposition.z += sin(newposition.x / 120.2 + uTime ) *80.0 ;
 // vec3 new = mix(position, newposition, uProgress);
-
+float noise =cnoise(vec3(position.x/100.,position.y,uTime * 0.5)) ;
 
         // newposition.z += cnoise(vec3(position.x/100.,position.y/100.,uTime * 0.2))*100.;
         // newposition.z -= 150.;
 
+vNoise = noise;
+// newposition.z += sin((newposition.y / 1800. + 0.25 +uTime * 0.6  ) *2. * PI)*180.;
+newposition.z += sin((newposition.y/ 1200. + 0.25   ) *2. *( PI))*180.;
 
-newposition.z += sin((newposition.x / 1800. - 0.25+ uTime / 10. ) *2. * PI)*100.;
+newposition.y += sin((newposition.x  / 1700. + 0.25  ) *2. * PI )*600.;
 
-vec3 new = mix(position, newposition, uProgress);
+// newposition.z -= newposition.y / 5. ;
+newposition.z +=  sin(newposition.y * (1.5) / (uViewportSizes.y -0.25 ) * PI + PI ) ;
+// newposition.z += newposition.y / 2.5 ;
+vec3 new = mix(position, newposition, uStrength);
     vec4 modelPosition = modelMatrix * vec4(new, 1.0);
 
 

@@ -6,6 +6,7 @@ uniform float uBorderRadius;
 uniform float visibleHeight;
 varying vec2 vUv;
 varying vec2 vH;
+uniform float uProgress;
 
 // Background cover UV
  
@@ -54,6 +55,7 @@ float roundCorners(vec2 planeRes, vec2 uv, float radius) {
     float b = udRoundBox( (uv * planeRes) - halfRes, halfRes, iRadius );
     return clamp(1.0 - b, 0.0, 1.0);
 }
+varying float vNoise;
 
 void main() {
     
@@ -70,6 +72,7 @@ float roundC = roundCorners(uGeometrySize, vH, uBorderRadius / min(uGeometrySize
 
      gl_FragColor = color;
      gl_FragColor.a = 1.0;
+    //  gl_FragColor.r = mix(gl_FragColor.r, vNoise, uProgress);
 
 gl_FragColor.a *= roundC;
 
