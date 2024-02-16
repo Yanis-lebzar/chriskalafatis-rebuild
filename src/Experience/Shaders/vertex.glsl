@@ -94,7 +94,7 @@ void main()
     vec3 newposition = position;
 
     // newposition.y *= sin(newposition.x/4500. * ((-3.14159265359/2.) * 10.) + uTime * 1.);
-    // newposition.z += sin(newposition.x / 120.2 + uTime ) *80.0 ;
+    newposition.y += sin(((newposition.y * 1.5)   )/ uViewportSizes.y * PI * PI  /1.5 )  * -uStrength*400.0 ;
 // vec3 new = mix(position, newposition, uProgress);
 float noise =cnoise(vec3(position.x/100.,position.y,uTime * 0.5)) ;
 
@@ -103,15 +103,15 @@ float noise =cnoise(vec3(position.x/100.,position.y,uTime * 0.5)) ;
 
 vNoise = noise;
 // newposition.z += sin((newposition.y / 1800. + 0.25 +uTime * 0.6  ) *2. * PI)*180.;
-newposition.z += sin((newposition.y/ 1200. + 0.25   ) *2. *( PI))*180.;
+// newposition.z += sin((newposition.y/ 1200. + 0.25   ) *2. *( PI))*180.;
 
-newposition.y += sin((newposition.x  / 1700. + 0.25  ) *2. * PI )*600.;
-
+// newposition.y += sin((newposition.x  / 1700. + 0.25  ) *2. * PI )*600.;
+  // newposition.z += sin((newposition.y ) / uViewportSizes.y/ 10. * PI + PI / 2.0) * -uStrength*1000.;
 // newposition.z -= newposition.y / 5. ;
-newposition.z +=  sin(newposition.y * (1.5) / (uViewportSizes.y -0.25 ) * PI + PI ) ;
+// newposition.z +=  sin(newposition.y * (1.5) / (uViewportSizes.y -0.25 ) * PI + PI ) ;
 // newposition.z += newposition.y / 2.5 ;
 vec3 new = mix(position, newposition, uStrength);
-    vec4 modelPosition = modelMatrix * vec4(new, 1.0);
+    vec4 modelPosition = modelMatrix * vec4(newposition, 1.0);
 
 
     vec4 viewPosition = viewMatrix * modelPosition;
